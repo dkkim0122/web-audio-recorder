@@ -2,11 +2,12 @@
   "name": "web-audio-recorder-wav",
   "version": "1.0.0",
   "description": "WAV format audio recorder in browser using WebAudio API",
+  "type": "module",
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/esm/index.js",
+      "import": "./dist/index.js",
       "types": "./dist/types/index.d.ts"
     }
   },
