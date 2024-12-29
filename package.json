@@ -1,0 +1,22 @@
+{
+  "name": "web-audio-recorder-wav",
+  "version": "1.0.0",
+  "description": "WAV format audio recorder in browser using WebAudio API",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "author": "dokyung-kim",
+  "homepage": "https://github.com/dkkim0122/web-audio-recorder",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^5.7.2"
+  }
+}
