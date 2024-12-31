@@ -1,3 +1,3 @@
 import { AudioRecorderReturn } from './types';
-declare function useAudio(): AudioRecorderReturn;
-export { useAudio };
+declare function createAudioRecorder(): AudioRecorderReturn;
+export { createAudioRecorder };

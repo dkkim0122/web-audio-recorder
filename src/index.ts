@@ -1,21 +1,11 @@
 import { RecorderWokletProcessorSrc } from './worklet/recorderWorkletProcessor.js'
-import { AudioRecorderReturn, AudioRecorderOptions, AudioRecorderStates } from './types'
+import {
+  AudioRecorderReturn,
+  AudioRecorderOptions,
+  AudioRecorderStates,
+} from './types'
 
-async function useGetUserMedia(
-  contraints?: MediaStreamConstraints
-): Promise<MediaStream | null> {
-  try {
-    const mediaStream = await navigator.mediaDevices.getUserMedia(
-      contraints ?? { audio: true }
-    )
-    return mediaStream
-  } catch (err) {
-    window.alert('You do not have permission for microphone access.')
-    return null
-  }
-}
-
-function useAudio(): AudioRecorderReturn {
+function createAudioRecorder(): AudioRecorderReturn {
   const state: AudioRecorderStates = {
     mediaStream: null,
     isRecording: false,
@@ -43,8 +33,17 @@ function useAudio(): AudioRecorderReturn {
     }
   }
 
-  const requestMicPermission = async (): Promise<void> => {
-    state.mediaStream = await useGetUserMedia()
+  const requestMicPermission = async (
+    contraints?: MediaStreamConstraints
+  ): Promise<void> => {
+    try {
+      const mediaStream = await navigator.mediaDevices.getUserMedia(
+        contraints ?? { audio: true }
+      )
+      state.mediaStream = mediaStream
+    } catch (err) {
+      window.alert('You do not have permission for microphone access.')
+    }
   }
 
   const startRecording = async ({
@@ -152,4 +151,4 @@ function useAudio(): AudioRecorderReturn {
   }
 }
 
-export { useAudio }
+export { createAudioRecorder }

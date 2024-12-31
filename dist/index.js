@@ -1,15 +1,5 @@
 import { RecorderWokletProcessorSrc } from './worklet/recorderWorkletProcessor.js';
-async function useGetUserMedia(contraints) {
-    try {
-        const mediaStream = await navigator.mediaDevices.getUserMedia(contraints !== null && contraints !== void 0 ? contraints : { audio: true });
-        return mediaStream;
-    }
-    catch (err) {
-        window.alert('You do not have permission for microphone access.');
-        return null;
-    }
-}
-function useAudio() {
+function createAudioRecorder() {
     const state = {
         mediaStream: null,
         isRecording: false,
@@ -34,8 +24,14 @@ function useAudio() {
             audioContext.close().catch(() => { });
         }
     };
-    const requestMicPermission = async () => {
-        state.mediaStream = await useGetUserMedia();
+    const requestMicPermission = async (contraints) => {
+        try {
+            const mediaStream = await navigator.mediaDevices.getUserMedia(contraints !== null && contraints !== void 0 ? contraints : { audio: true });
+            state.mediaStream = mediaStream;
+        }
+        catch (err) {
+            window.alert('You do not have permission for microphone access.');
+        }
     };
     const startRecording = async ({ timeSlice, // ms
     sampleRate = 44000, // hz
@@ -116,4 +112,4 @@ function useAudio() {
         getState,
     };
 }
-export { useAudio };
+export { createAudioRecorder };
