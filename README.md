@@ -72,15 +72,6 @@ await recorder.startRecording({
 const checkVolume = () => {
   const state = recorder.getState();
   console.log('Current volume:', state.volume); // 0 to 1
-  
-  // Example: Display volume bar
-  const volumePercentage = Math.round(state.volume * 100);
-  volumeBar.style.width = `${volumePercentage}%`;
-  
-  // Continue monitoring if still recording
-  if (state.isRecording) {
-    requestAnimationFrame(checkVolume);
-  }
 };
 
 // Start volume monitoring
