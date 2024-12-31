@@ -1,11 +1,11 @@
 import { RecorderWokletProcessorSrc } from './worklet/recorderWorkletProcessor.js'
 import {
-  AudioRecorderReturn,
+  AudioRecorder,
   AudioRecorderOptions,
   AudioRecorderStates,
 } from './types'
 
-function createAudioRecorder(): AudioRecorderReturn {
+function createAudioRecorder(): AudioRecorder {
   const state: AudioRecorderStates = {
     mediaStream: null,
     isRecording: false,
@@ -152,3 +152,8 @@ function createAudioRecorder(): AudioRecorderReturn {
 }
 
 export { createAudioRecorder }
+export type {
+  AudioRecorderOptions,
+  AudioRecorderStates,
+  AudioRecorder,
+} from './types'

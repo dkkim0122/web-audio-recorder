@@ -11,28 +11,28 @@ export interface AudioRecorderOptions {
   /**
    * An indicator of how many digital signals an analog voice signal will be split into per second
    * @default 44100(Hz)
-  */
+   */
   sampleRate?: number
   /**
-    * Display the volume of voice recorded as a value between 0 and 1
-    * @default true
-  */
+   * Display the volume of voice recorded as a value between 0 and 1
+   * @default true
+   */
   enableAnalyzeVolume?: boolean
   /**
    * Convert the audio being recorded to a wav file by cutting it off at certain intervals
    * @remarks
    * - `number`: Delivers recorded wav files at specified intervals (ms) through `onDataAvailable` callback
-  */
+   */
   timeSlice?: number
   /**
    * Callback function that receives recorded voice blob data at a certain `timeSlice` as an argument
    * @param {Blob} data - Blob data in mimeType audio/wav
-   * @remarks called only if `timeSlice` is set 
-  */
+   * @remarks called only if `timeSlice` is set
+   */
   onDataAvailable?: (data: Blob) => void
 }
 
-export interface AudioRecorderReturn {
+export interface AudioRecorder {
   requestMicPermission: () => Promise<void>
   startRecording: (opt: AudioRecorderOptions) => Promise<void>
   /**
