@@ -12,9 +12,8 @@ function createAudioRecorder() {
     let flushInterval;
     let handleStopCallback;
     const stopMediaStream = () => {
-        var _a;
         if (state.mediaStream != null) {
-            (_a = state.mediaStream) === null || _a === void 0 ? void 0 : _a.getTracks().forEach((track) => {
+            state.mediaStream?.getTracks().forEach((track) => {
                 track.stop();
             });
         }
@@ -26,7 +25,7 @@ function createAudioRecorder() {
     };
     const requestMicPermission = async (contraints) => {
         try {
-            const mediaStream = await navigator.mediaDevices.getUserMedia(contraints !== null && contraints !== void 0 ? contraints : { audio: true });
+            const mediaStream = await navigator.mediaDevices.getUserMedia(contraints ?? { audio: true });
             state.mediaStream = mediaStream;
         }
         catch (err) {
@@ -52,7 +51,7 @@ function createAudioRecorder() {
             analyzerNode.getByteFrequencyData(arr); // amplitude of each frequency bin from 0 to 255
             const average = arr.reduce((a, b) => a + b) / arr.length;
             state.volume = Math.round(average) / 100;
-            if ((audioContext === null || audioContext === void 0 ? void 0 : audioContext.state) === 'running') {
+            if (audioContext?.state === 'running') {
                 requestAnimationFrame(analyzeVolume);
             }
         };
@@ -89,7 +88,7 @@ function createAudioRecorder() {
     const stopRecording = (cb) => {
         if (!state.isRecording)
             return;
-        handleStopCallback = cb !== null && cb !== void 0 ? cb : null;
+        handleStopCallback = cb ?? null;
         audioWorkletNode.port.postMessage('flush');
         clearInterval(flushInterval);
         inputNode.disconnect(analyzerNode);
