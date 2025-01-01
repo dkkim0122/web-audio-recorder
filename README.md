@@ -80,3 +80,7 @@ checkVolume();
 // Later: Stop recording
 recorder.stopRecording();
 ```
+
+## Additional Information
+### NPM Package
+- [https://www.npmjs.com/package/web-audio-recorder-wav](https://www.npmjs.com/package/web-audio-recorder-wav)
