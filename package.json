@@ -12,12 +12,18 @@
     }
   },
   "scripts": {
-    "build": "tsc"
+    "build": "rollup -c"
   },
   "author": "dokyung-kim",
   "homepage": "https://github.com/dkkim0122/web-audio-recorder",
   "license": "MIT",
   "dependencies": {
     "typescript": "^5.7.2"
+  },
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "rollup": "^4.34.0",
+    "tslib": "^2.8.1"
   }
 }
