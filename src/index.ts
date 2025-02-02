@@ -1,4 +1,4 @@
-import { RecorderWokletProcessorSrc } from './worklet/recorderWorkletProcessor.js'
+import { RecorderWokletProcessorSrc } from './worklet/recorderWorkletProcessor'
 import {
   AudioRecorder,
   AudioRecorderOptions,
